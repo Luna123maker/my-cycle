@@ -1,0 +1,19 @@
+{
+  "name": "My Cycle",
+  "short_name": "My Cycle",
+  "description": "A soft, colourful cycle companion: your phase today, mood, energy, what to do and what to eat.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFE8EF",
+  "theme_color": "#FFE8EF",
+  "lang": "en",
+  "categories": ["health", "lifestyle"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
