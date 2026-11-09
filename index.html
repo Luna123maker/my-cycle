@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>My Cycle</title>
+  <meta name="description" content="Your phase today, mood, energy, what to do and what to eat.">
+  <meta name="theme-color" content="#FFE8EF">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="My Cycle">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <header class="topbar">
+    <div>
+      <div class="eyebrow" id="todayLabel">Today</div>
+      <div class="title">My Cycle</div>
+    </div>
+    <div class="phase-pill" id="phasePill">…</div>
+  </header>
+
+  <main id="views">
+    <!-- HOME -->
+    <section class="view active" data-view="home" aria-label="Home">
+      <div class="card status">
+        <div class="status-icon" id="statusIcon">
+          <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c0 0-6 7.2-6 11.2A6 6 0 0 0 12 20a6 6 0 0 0 6-5.8C18 10.2 12 3 12 3z" fill="#fff"/></svg>
+        </div>
+        <div class="status-text">
+          <div class="muted small" id="statusDate"></div>
+          <div class="h3" id="statusPhase"></div>
+          <p class="body" id="statusExpect"></p>
+        </div>
+        <div class="days-ring" id="daysRing"></div>
+      </div>
+
+      <div class="card wheel-card">
+        <div id="wheelHome" class="wheel"></div>
+        <div class="chips center" id="chipsHome"></div>
+        <div id="timeline"></div>
+        <p class="hint">Tap a coloured arc or chip to open that phase</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card weather" id="weather"></div>
+        <div class="card" id="energyCard"></div>
+      </div>
+
+      <div class="card">
+        <div class="label">Upcoming</div>
+        <div class="rows" id="upcoming"></div>
+      </div>
+
+      <div class="card" id="care"></div>
+
+      <button class="cta" id="logBtnHome" type="button">💧 My period started today</button>
+    </section>
+
+    <!-- PHASES -->
+    <section class="view" data-view="phases" aria-label="Phases">
+      <div class="card wheel-card compact">
+        <div id="wheelPhases" class="wheel small"></div>
+        <div class="chips center" id="chipsPhases"></div>
+      </div>
+      <div class="card" id="phaseDetail"></div>
+    </section>
+
+    <!-- FOOD -->
+    <section class="view" data-view="food" aria-label="Food">
+      <div class="chips center" id="chipsFood"></div>
+      <div class="card food-hero" id="foodHero"></div>
+      <div class="meals" id="meals"></div>
+      <div class="card" id="shopping"></div>
+    </section>
+
+    <!-- YOU -->
+    <section class="view" data-view="you" aria-label="You">
+      <div class="card">
+        <div class="h2">Your cycle</div>
+        <p class="body">Saved only on this phone. Nothing is uploaded.</p>
+        <form id="settingsForm" class="form" autocomplete="off">
+          <label class="field">
+            <span>Last period start</span>
+            <input type="date" id="inStart" required>
+          </label>
+          <label class="field">
+            <span>Cycle length (days)</span>
+            <div class="stepper">
+              <button type="button" class="step" data-step="-1" aria-label="Shorter">−</button>
+              <input type="number" id="inLength" min="21" max="40" inputmode="numeric" required>
+              <button type="button" class="step" data-step="1" aria-label="Longer">+</button>
+            </div>
+          </label>
+          <label class="toggle" id="avgToggleWrap">
+            <input type="checkbox" id="inUseAvg">
+            <span class="switch"></span>
+            <span id="avgLabel">Use my average length</span>
+          </label>
+          <div class="btn-row">
+            <button type="submit" class="btn primary">Save</button>
+            <button type="button" class="btn" id="resetBtn">Reset</button>
+          </div>
+          <p class="form-msg" id="formMsg" role="status"></p>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="h2">Period log</div>
+        <p class="body">Tap once when a new period starts. With 2 or more starts, the app learns your average cycle length.</p>
+        <button class="cta" id="logBtnYou" type="button">💧 My period started today</button>
+        <div class="stats" id="stats"></div>
+        <ul class="history" id="history"></ul>
+      </div>
+
+      <div class="card">
+        <div class="h3">Gentle note</div>
+        <p class="body small">Phase timing is an estimate from your dates. Mood and energy patterns are common experiences, not guarantees, and food ideas are a lifestyle guide. This app isn't medical advice. See a clinician for very heavy bleeding or mood changes that feel severe.</p>
+      </div>
+      <p class="hint">My Cycle · works offline</p>
+    </section>
+  </main>
+
+  <nav class="tabbar" id="tabbar" aria-label="Main">
+    <button type="button" data-nav="home" class="active"><span class="ic">🏠</span><span>Home</span></button>
+    <button type="button" data-nav="phases"><span class="ic">📅</span><span>Phases</span></button>
+    <button type="button" data-nav="food"><span class="ic">💗</span><span>Food</span></button>
+    <button type="button" data-nav="you"><span class="ic">👤</span><span>You</span></button>
+    <span class="tab-indicator" id="tabIndicator" aria-hidden="true"></span>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
